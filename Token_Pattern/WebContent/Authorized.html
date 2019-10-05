@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>SSS Assignment1 Token pattern</title>
+</head>
+<body>
+
+	<form id = "inputForm" name="inputForm" action="HomeServlet" method="post">
+		<h2>Welcome to SSS..!</h2>
+		<br/>
+		<p>Please enter your name and email to verify the CSRF Token</p>
+		<br/>
+		name : <input type="text" name="name"/>
+		email : <input type="text" name="email"/> <input type="submit" value="Submit"/>
+		<br/>
+		
+	</form>
+
+
+	<script type="text/javascript">
+		function callAjax(url, callback){
+		    var xmlhttp;
+		    xmlhttp = new XMLHttpRequest();
+		    xmlhttp.responseType = 'json';
+		    xmlhttp.onreadystatechange = function(){
+		        if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+		            callback(xmlhttp.response);
+		        }
+		    }
+		    xmlhttp.open("GET", url, true);
+		    xmlhttp.send();
+		}
+		
+		function myCallback(resp){
+			console.log(resp["CSRF_key"]);
+			
+			var form = document.forms['inputForm'];
+			   // form.action = 'redirect url';
+			   var el = document.createElement("input");
+			   el.type = "hidden";
+			   el.name = "myHiddenField";
+			   el.value = resp["CSRF_key"];
+			   form.appendChild(el);
+		}
+		
+		callAjax("CSRFProvider", myCallback);
+	
+	
+	</script>
+
+</body>
+</html>
