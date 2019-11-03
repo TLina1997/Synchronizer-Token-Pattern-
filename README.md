@@ -6,4 +6,6 @@ Appche Tomcat server 9.0
 
 user name: admin password: password
 
+# Visit my YouTube account for more information: https://youtu.be/mERQcCavWhs
+
 # More Information (Blog Post URL): https://synchronizertokenpatternanddoublesubmitcookie.wordpress.com
